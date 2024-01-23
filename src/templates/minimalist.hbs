@@ -11,8 +11,29 @@
   <body>
     <div class="p-10">
       <div class="grid gap-4 grid-cols-[2fr,1.2fr] mb-8">
-        <div class="rounded-[20px] p-4 bg-[#EBEFF6]">
-          <p>BRIX Agency</p>
+        <div
+          class="rounded-[20px] relative overflow-hidden bg-[#3362CC] flex items-center h-full"
+        >
+          <div class="text-white p-8">
+            <p class="text-[18px] mb-[6px] font-[600]">
+              {{recipientName}}
+            </p>
+            <p
+              class="text-[10px] mb-[6px] leading-[10px]"
+            >{{recipientEmail}}</p>
+            <p class="text-[10px] leading-[14px]">
+              {{billFrom}}
+            </p>
+          </div>
+          <div class="absolute right-0 top-0">
+            <img src="/src/assets/bluesvg-biggest.svg" alt="svg" />
+          </div>
+          <div class="absolute right-0 bottom-0">
+            <img src="/src/assets/bluesvg-big.svg" alt="svg" />
+          </div>
+          <div class="absolute left-0 bottom-0">
+            <img src="/src/assets/bluesvg-small.svg" alt="svg" />
+          </div>
         </div>
         <div class="rounded-[20px] bg-[#EBEFF6] p-4">
           <div
@@ -23,17 +44,23 @@
             class="p-3 bg-[#fff] rounded-[10px] mb-4"
           >
             <p class="text-[8px] text-[#868DA6]">AMOUNT DUE</p>
-            <p class="text-[24px] font-[600] text-[#19213D]">USD 18,320</p>
-            <p class="text-[8px] text-[#868DA6]">July 26, 2024</p>
+            <p class="text-[24px] font-[600] text-[#19213D]">{{currency}}
+              {{totalAmount}}
+            </p>
+            <p class="text-[8px] text-[#868DA6]">
+              {{dateFormat issuedOn "MMMM D, YYYY"}}
+            </p>
           </div>
           <div>
             <p class="text-[8px] mb-[6px] text-[#868DA6]">INVOICE TO:</p>
             <p class="text-[14px] mb-[6px] font-[600] text-[#19213D]">
-              John Doe
+              {{clientName}}
             </p>
-            <p class="text-[10px] mb-[6px] text-[#868DA6]">(234) 810 - 8754</p>
+            <p class="text-[10px] mb-[6px] text-[#868DA6] leading-[10px]">
+              {{clientEmail}}
+            </p>
             <p class="text-[10px] text-[#868DA6] leading-[14px]">
-              Pablo Alto, San Francisco, CA 92102, United States of America
+              {{billTo}}
             </p>
           </div>
         </div>
@@ -51,15 +78,25 @@
         >
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">INVOICE NUMBER</p>
-            <p class="text-[12px] font-[600] text-[#19213D]">INV 657DEF76</p>
+            <p
+              class="text-[12px] font-[600] text-[#19213D]"
+            >{{invoiceNumber}}</p>
           </div>
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">ISSUED</p>
-            <p class="text-[12px] font-[600] text-[#19213D]">June 26, 2024</p>
+            <p class="text-[12px] font-[600] text-[#19213D]">{{dateFormat
+                issuedOn
+                "MMMM D, YYYY"
+              }}
+            </p>
           </div>
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">DUE DATE</p>
-            <p class="text-[12px] font-[600] text-[#19213D]">June 26, 2024</p>
+            <p class="text-[12px] font-[600] text-[#19213D]">{{dateFormat
+                dueOn
+                "MMMM D, YYYY"
+              }}
+            </p>
           </div>
         </div>
       </div>
@@ -94,55 +131,46 @@
             </tr>
           </thead>
           <tbody class="divide-[#cbd5e1]">
-            <!-- {{#each items as |item|}}
-              <tr class="hover:bg-gray-100 cursor-pointer">
-
-                <td class="py-5 pl-4 pr-3 text-sm text-[#1E293B] sm:pl-6">
-                  {{item.code}}
+            {{#each items as |item|}}
+              <tr
+                style="border-bottom: 0.6px solid #ebeff6"
+                class="bg-[#EBEFF6] hover:bg-gray-100 cursor-pointer first:rounded-t-[16px] last:rounded-b-[16px]"
+              >
+                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
+                  {{item.item}}
                 </td>
-
-                <td class="px-3 py-5 text-sm text-[#1E293B]">
-                  {{item.description}}
-                </td>
-                <td class="px-3 py-5 text-sm text-[#1E293B]">
+                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
                   {{item.quantity}}
                 </td>
-                <td class="px-3 py-5 text-sm text-[#1E293B]">
-                  {{item.unitPrice}}
+                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
+                  {{item.price}}
                 </td>
                 <td
-                  class="px-3 py-5 text-sm text-[#1E293B]"
-                >{{item.amount}}</td>
+                  class="text-[#5D6481] text-[12px] font-[600] p-4"
+                >{{item.totalPrice}}</td>
               </tr>
-            {{/each}} -->
-            <tr style="border-bottom: 0.6px solid #ebeff6" class="bg-[#EBEFF6]">
-              <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                Web design services development
-              </td>
-              <td class="text-[#5D6481] text-[12px] font-[600] p-4">10</td>
-              <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                USD 2,250
-              </td>
-              <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                USD 22,500
-              </td>
-            </tr>
+            {{/each}}
           </tbody>
         </table>
 
         <div class="flex mb-8 justify-end">
           <div>
             <p class="text-right text-[#868DA6] text-[10px]">TOTAL AMOUNT</p>
-            <p class="text-[24px] text-[#3362CC] font-bold">USD 30,250</p>
+            <p class="text-[24px] text-[#3362CC] font-bold">{{ currency }} {{totalAmount}} </p>
           </div>
         </div>
 
         <div
-          class="p-4 rounded-[10px]"
+          class="p-4 py-6 rounded-[10px]"
           style="border: 0.6px solid #ebeff6"
         >
-          <p class="text-[#5D6481] mb-1 text-[10px] font-[600]">Terms & Conditions:</p>
-          <p class="text-[#868DA6] text-[10px] font-[400]">Fees and payment terms will be established in the contract or agreement prior to the commencement of the project. An initial deposit will be required before any design work begins. We reserve the right to suspend or halt work in the event of non-payment.</p>
+          <p class="text-[#5D6481] mb-1 text-[10px] font-[600]">Terms &
+            Conditions:</p>
+          <p class="text-[#868DA6] text-[10px] font-[400]">Fees and payment
+            terms will be established in the contract or agreement prior to the
+            commencement of the project. An initial deposit will be required
+            before any design work begins. We reserve the right to suspend or
+            halt work in the event of non-payment.</p>
         </div>
       </div>
     </div>
