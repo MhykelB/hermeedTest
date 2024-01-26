@@ -1,48 +1,44 @@
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/src/styles/styles.css" />
-  </head>
-  <body>
-    <div class="p-10">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href={{tailwindcss}} />
+  {{!-- <link rel="stylesheet" href="/src/public/styles/styles.css"/> --}}
+</head>
+
+<body>
+  <div class="p-10 h-full">
+    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
       <div class="grid gap-4 grid-cols-[2fr,1.2fr] mb-8">
-        <div
-          class="rounded-[20px] relative overflow-hidden bg-[#3362CC] flex items-center h-full"
-        >
+        <div class="rounded-[20px] relative overflow-hidden bg-[#3362CC] flex items-center h-full">
           <div class="text-white p-8">
             <p class="text-[18px] mb-[6px] font-[600]">
               {{recipientName}}
             </p>
-            <p
-              class="text-[10px] mb-[6px] leading-[10px]"
-            >{{recipientEmail}}</p>
+            <p class="text-[10px] mb-[6px] leading-[10px]">{{recipientEmail}}</p>
             <p class="text-[10px] leading-[14px]">
               {{billFrom}}
             </p>
           </div>
           <div class="absolute right-0 top-0">
-            <img src="/src/assets/bluesvg-biggest.svg" alt="svg" />
+            <img src={{bluesvgBiggest}} alt="svg" />
           </div>
           <div class="absolute right-0 bottom-0">
-            <img src="/src/assets/bluesvg-big.svg" alt="svg" />
+            <img src={{bluesvgBig}} alt="svg" />
           </div>
           <div class="absolute left-0 bottom-0">
-            <img src="/src/assets/bluesvg-small.svg" alt="svg" />
+            <img src={{bluesvgSmall}} alt="svg" />
           </div>
         </div>
         <div class="rounded-[20px] bg-[#EBEFF6] p-4">
-          <div
-            style="
+          <div style="
               box-shadow: 0px 1px 3px 0px rgba(25, 33, 61, 0.05),
                 0px 2px 8px 0px rgba(25, 33, 61, 0.04);
-            "
-            class="p-3 bg-[#fff] rounded-[10px] mb-4"
-          >
+            " class="p-3 bg-[#fff] rounded-[10px] mb-4">
             <p class="text-[8px] text-[#868DA6]">AMOUNT DUE</p>
             <p class="text-[24px] font-[600] text-[#19213D]">{{currency}}
               {{totalAmount}}
@@ -68,33 +64,28 @@
       <!-- Invoice Details -->
       <div>
         <p class="ml-4 text-[12px] mb-1 text-[#868DA6]">INVOICE DETAILS</p>
-        <div
-          class="flex justify-between p-4 rounded-[10px]"
-          style="
+        <div class="flex justify-between p-4 rounded-[10px]" style="
             border: 0.6px solid #ebeff6;
             box-shadow: 0px 1px 3px 0px rgba(25, 33, 61, 0.05),
               0px 2px 8px 0px rgba(25, 33, 61, 0.04);
-          "
-        >
+          ">
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">INVOICE NUMBER</p>
-            <p
-              class="text-[12px] font-[600] text-[#19213D]"
-            >{{invoiceNumber}}</p>
+            <p class="text-[12px] font-[600] text-[#19213D]">{{invoiceNumber}}</p>
           </div>
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">ISSUED</p>
             <p class="text-[12px] font-[600] text-[#19213D]">{{dateFormat
-                issuedOn
-                "MMMM D, YYYY"
+              issuedOn
+              "MMMM D, YYYY"
               }}
             </p>
           </div>
           <div>
             <p class="text-[10px] mb-1 text-[#868DA6]">DUE DATE</p>
             <p class="text-[12px] font-[600] text-[#19213D]">{{dateFormat
-                dueOn
-                "MMMM D, YYYY"
+              dueOn
+              "MMMM D, YYYY"
               }}
             </p>
           </div>
@@ -104,51 +95,38 @@
         <table class="mb-[54px] min-w-full">
           <thead>
             <tr class="">
-              <th
-                scope="col"
-                class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]"
-              >
+              <th scope="col" class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]">
                 DESCRIPTION
               </th>
-              <th
-                scope="col"
-                class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]"
-              >
+              <th scope="col" class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]">
                 QTY
               </th>
-              <th
-                scope="col"
-                class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]"
-              >
+              <th scope="col" class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]">
                 PRICE
               </th>
-              <th
-                scope="col"
-                class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]"
-              >
+              <th scope="col" class="py-3 px-4 text-[#868DA6] text-left text-[12px] font-[500]">
                 TOTAL
               </th>
             </tr>
           </thead>
-          <tbody class="divide-[#cbd5e1]">
+          <tbody>
             {{#each items as |item|}}
-              <tr
-                style="border-bottom: 0.6px solid #ebeff6"
-                class="bg-[#EBEFF6] hover:bg-gray-100 cursor-pointer first:rounded-t-[16px] last:rounded-b-[16px]"
+            <tr style="border-bottom: 0.6px solid #ebeff6; background-color:#ebeff6; {{#if (isFirst index)}}border-radius: 16px 16px 0 0{{/if}} {{#if (isLast index items)}} rounded-b-[16px]{{/if}};"
               >
-                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                  {{item.item}}
-                </td>
-                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                  {{item.quantity}}
-                </td>
-                <td class="text-[#5D6481] text-[12px] font-[600] p-4">
-                  {{item.price}}
-                </td>
-                <td
-                  class="text-[#5D6481] text-[12px] font-[600] p-4"
-                >{{item.totalPrice}}</td>
-              </tr>
+        
+              <td
+                class="text-[#5D6481] text-[12px] font-[600] p-4">
+                {{item.item}}
+              </td>
+              <td class="text-[#5D6481] text-[12px] font-[600] p-4">
+                {{item.quantity}}
+              </td>
+              <td class="text-[#5D6481] text-[12px] font-[600] p-4">
+                {{item.price}}
+              </td>
+              <td class="text-[#5D6481] text-[12px] font-[600] p-4">{{currency}} {{item.totalPrice}}</td>
+      
+            </tr>
             {{/each}}
           </tbody>
         </table>
@@ -159,20 +137,10 @@
             <p class="text-[24px] text-[#3362CC] font-bold">{{ currency }} {{totalAmount}} </p>
           </div>
         </div>
-
-        <div
-          class="p-4 py-6 rounded-[10px]"
-          style="border: 0.6px solid #ebeff6"
-        >
-          <p class="text-[#5D6481] mb-1 text-[10px] font-[600]">Terms &
-            Conditions:</p>
-          <p class="text-[#868DA6] text-[10px] font-[400]">Fees and payment
-            terms will be established in the contract or agreement prior to the
-            commencement of the project. An initial deposit will be required
-            before any design work begins. We reserve the right to suspend or
-            halt work in the event of non-payment.</p>
-        </div>
       </div>
     </div>
-  </body>
+   </div>
+  </div>
+</body>
+
 </html>
