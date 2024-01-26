@@ -1,16 +1,24 @@
 import express, { NextFunction, Request, Response } from "express";
 import invoiceRoutes from "./src/routes/invoice";
+import path from "path";
 import morgan from "morgan";
 import cors from "cors";
 import createHttpError, { isHttpError } from "http-errors";
 const app = express();
 
+app.listen(5000, () => {
+  console.log("Server running on " + 5000);
+});
+
 // Middleware logger
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "./src/public")));
 
 // Specify what kind of filetype to use on our database
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+// app.use(cors({ origin: "*" }));
+app.use(cors());
+app.options("*", cors());
 
 // Router middleware
 app.use("/api", invoiceRoutes);
