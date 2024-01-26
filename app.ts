@@ -2,11 +2,16 @@ import express, { NextFunction, Request, Response } from "express";
 import invoiceRoutes from "./src/routes/invoice";
 import path from "path";
 import morgan from "morgan";
+import "dotenv/config";
 import cors from "cors";
+ import env from "./src/utils/validateEnv"
 import createHttpError, { isHttpError } from "http-errors";
 const app = express();
 
-app.listen(5000, () => {
+export const PORT = env.PORT;
+export const API_URL = env.API_URL;
+
+app.listen(PORT, () => {
   console.log("Server running on " + 5000);
 });
 

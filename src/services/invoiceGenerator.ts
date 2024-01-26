@@ -3,14 +3,15 @@ import fs from "fs";
 import path from "path";
 import hbs from "handlebars";
 import dayjs from "dayjs";
-
+import "dotenv/config";
+import { API_URL } from "../../app";
 
 hbs.registerHelper("dateFormat", function (value, format) {
   return dayjs(value).format(format);
 });
 
 // Assuming you are using a JavaScript environment
-hbs.registerHelper('isFirst', function(index) {
+hbs.registerHelper("isFirst", function (index) {
   return index === 0;
 });
 
@@ -29,10 +30,10 @@ const compile = async <T>(templateName: string, data: T) => {
   const html = fs.readFileSync(filePath, "utf-8");
   return hbs.compile(html)({
     ...data,
-    tailwindcss: "http://localhost:5000/styles/styles.css",
-    bluesvgBiggest: "http://localhost:5000/assets/bluesvg-biggest.svg",
-    bluesvgBig: "http://localhost:5000/assets/bluesvg-big.svg",
-    bluesvgSmall: "http://localhost:5000/assets/bluesvg-small.svg",
+    tailwindcss: `${API_URL}/styles/styles.css`,
+    bluesvgBiggest: `${API_URL}/assets/bluesvg-biggest.svg`,
+    bluesvgBig: `${API_URL}/assets/bluesvg-big.svg`,
+    bluesvgSmall: `${API_URL}/assets/bluesvg-small.svg`,
   });
 };
 
