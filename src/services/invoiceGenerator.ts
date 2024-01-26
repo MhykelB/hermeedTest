@@ -9,6 +9,16 @@ hbs.registerHelper("dateFormat", function (value, format) {
   return dayjs(value).format(format);
 });
 
+// Assuming you are using a JavaScript environment
+hbs.registerHelper('isFirst', function(index) {
+  return index === 0;
+});
+
+hbs.registerHelper("isLast", function (index, array) {
+  // Check if 'array' is defined and is an array before accessing its length
+  return array && Array.isArray(array) && index === array.length - 1;
+});
+
 const compile = async <T>(templateName: string, data: T) => {
   const filePath = path.join(
     process.cwd(),
@@ -19,8 +29,10 @@ const compile = async <T>(templateName: string, data: T) => {
   const html = fs.readFileSync(filePath, "utf-8");
   return hbs.compile(html)({
     ...data,
-    tailwindcss: ``,
-    logo: ``,
+    tailwindcss: "http://localhost:5000/styles/styles.css",
+    bluesvgBiggest: "http://localhost:5000/assets/bluesvg-biggest.svg",
+    bluesvgBig: "http://localhost:5000/assets/bluesvg-big.svg",
+    bluesvgSmall: "http://localhost:5000/assets/bluesvg-small.svg",
   });
 };
 
@@ -28,7 +40,8 @@ export const generatePDF = async <T>(
   templateName: string,
   data: T,
   removeMargins?: boolean,
-  withHeader?: boolean
+  // withHeader?: boolean,
+  notes?: string
 ) => {
   // Create a browser instance
   const browser = await puppeteer.launch({
@@ -57,18 +70,19 @@ export const generatePDF = async <T>(
     },
     printBackground: true,
     format: "A4",
-    displayHeaderFooter: withHeader,
-    headerTemplate: `<div style="display: flex; justify-content: flex-end; padding-left: 40px; padding-right: 40px;" class="flex justify-end px-10">
-    <img
-      src=""
-      style="width: 30%"
-      alt="logo"
-    />
-  </div>`,
-    footerTemplate: ``,
+    displayHeaderFooter: true,
+    footerTemplate: `<div
+          style="border: 0.6px solid #ebeff6; border-radius: 10px; padding: 20px 16px; width: 100%; margin: 0 40px 20px 40px;"
+        >
+          <p style="color: #5d6481; font-size: 10px; font-weight: 600;">Notes:</p>
+          <p style="color: #EBEFF6; font-size: 10px; font-weight: 400;">
+            ${notes}
+          </p>
+        </div>`,
   });
 
   await browser.close();
 
   return pdf.toString("base64");
+  // return pdf
 };
