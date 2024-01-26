@@ -12,7 +12,8 @@ export interface IInvoice {
   currency: string;
   notes?: string;
   items: Item[];
-  invoiceStyle?: INVOICESTYLES
+  invoiceStyle?: INVOICESTYLES;
+  totalamount: number;
 }
 
 interface Item {
