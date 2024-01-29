@@ -4,7 +4,7 @@ import path from "path";
 import hbs from "handlebars";
 import dayjs from "dayjs";
 import "dotenv/config";
-import { API_URL } from "../..";
+import { API_URL } from "../../app";
 
 hbs.registerHelper("dateFormat", function (value, format) {
   return dayjs(value).format(format);
