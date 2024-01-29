@@ -2,9 +2,9 @@
   "name": "invoice-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon app.ts",
+    "start": "nodemon index.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx tailwindcss -i ./src/public/styles/index.css -o ./src/public/styles/styles.css --watch",
