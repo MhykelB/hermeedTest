@@ -4,7 +4,7 @@ import path from "path";
 import morgan from "morgan";
 import "dotenv/config";
 import cors from "cors";
- import env from "./src/utils/validateEnv"
+import env from "./src/utils/validateEnv";
 import createHttpError, { isHttpError } from "http-errors";
 const app = express();
 
