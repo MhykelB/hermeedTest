@@ -30,7 +30,7 @@ app.use("/api", invoiceRoutes);
 
 // Create error message for when API is unavailable
 app.use((req, res, next) => {
-  next(createHttpError(404, "Endpoint not found"));
+  next(createHttpError(404, "ode, e don dey work"));
 });
 
 // Middleware setup
